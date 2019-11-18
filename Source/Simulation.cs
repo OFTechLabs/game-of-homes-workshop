@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -57,7 +56,7 @@ namespace GameOfHomes
 				Console.Write($@"{scenario + 1}");
 				Console.SetCursorPosition(20, 1);
 
-				Economy.Read("..\\..\\Scenarios\\Scenario" + scenario + ".csv");
+				Economy.Read("..\\Scenarios\\Scenario" + scenario + ".csv");
 				
 				var association = new HousingAssociation(0);
 				GatherData(association, scenario, 0);
@@ -102,17 +101,17 @@ namespace GameOfHomes
 
 			try
 			{
-				_Worksheet sheetSolvencyRatio = workBook.Worksheets["SolvencyRatio"];
-				_Worksheet sheetHouses = workBook.Worksheets["Number of houses"];
-				_Worksheet sheetRent = workBook.Worksheets["Average rent"];
-				_Worksheet sheetSustainability = workBook.Worksheets["Average sustainability"];
-				_Worksheet sheetMaintenance = workBook.Worksheets["Average maintenance"];
-				_Worksheet sheetDebt = workBook.Worksheets["Debt"];
-				_Worksheet sheetInterest = workBook.Worksheets["Interest"];
-				_Worksheet sheetNumberOfCheapHouses = workBook.Worksheets["Number of cheap houses"];
-				_Worksheet sheetNumberOfBadHouses = workBook.Worksheets["Number of bad houses"];
-				_Worksheet sheetScores = workBook.Worksheets["Scores"];
-				_Worksheet sheetStatistics = workBook.Worksheets["Statistics"];
+				var sheetSolvencyRatio = (_Worksheet)workBook.Worksheets["SolvencyRatio"];
+				var sheetHouses = (_Worksheet)workBook.Worksheets["Number of houses"];
+				var sheetRent = (_Worksheet)workBook.Worksheets["Average rent"];
+				var sheetSustainability = (_Worksheet)workBook.Worksheets["Average sustainability"];
+				var sheetMaintenance = (_Worksheet)workBook.Worksheets["Average maintenance"];
+				var sheetDebt = (_Worksheet)workBook.Worksheets["Debt"];
+				var sheetInterest = (_Worksheet)workBook.Worksheets["Interest"];
+				var sheetNumberOfCheapHouses = (_Worksheet)workBook.Worksheets["Number of cheap houses"];
+				var sheetNumberOfBadHouses = (_Worksheet)workBook.Worksheets["Number of bad houses"];
+				var sheetScores = (_Worksheet)workBook.Worksheets["Scores"];
+				var sheetStatistics = (_Worksheet)workBook.Worksheets["Statistics"];
 
 				excelApp.Calculation = XlCalculation.xlCalculationManual;
 				excelApp.ScreenUpdating = false;
@@ -130,16 +129,16 @@ namespace GameOfHomes
 					FillRange(year, sheetNumberOfCheapHouses, (scenario, t) => _numberOfCheapHouses[scenario, t]);
 					FillRange(year, sheetNumberOfBadHouses, (scenario, t) => _numberOfBadHouses[scenario, t]);
 
-					sheetStatistics.Rows[year + 2].Cells[1].Value = _numberOfBankruptcies[year];
-					sheetStatistics.Rows[year + 2].Cells[2].Value = Average(year, _scores);
-					sheetStatistics.Rows[year + 2].Cells[3].Value = Average(year, _sustainability);
-					sheetStatistics.Rows[year + 2].Cells[4].Value = Average(year, _rent);
-					sheetStatistics.Rows[year + 2].Cells[5].Value = Average(year, _interest);
-					sheetStatistics.Rows[year + 2].Cells[6].Value = Average(year, _houses);
+					sheetStatistics.Cells[year + 2, 1] = _numberOfBankruptcies[year];
+					sheetStatistics.Cells[year + 2, 2] = Average(year, _scores);
+					sheetStatistics.Cells[year + 2, 3] = Average(year, _sustainability);
+					sheetStatistics.Cells[year + 2, 4] = Average(year, _rent);
+					sheetStatistics.Cells[year + 2, 5] = Average(year, _interest);
+					sheetStatistics.Cells[year + 2, 6] = Average(year, _houses);
 
-					sheetStatistics.Rows[year + 2].Cells[8].Value = Average(year, _numberOfHousesScores);
-					sheetStatistics.Rows[year + 2].Cells[9].Value = Average(year, _rentScores);
-					sheetStatistics.Rows[year + 2].Cells[10].Value = Average(year, _sustainabilityScores);
+					sheetStatistics.Cells[year + 2, 8] = Average(year, _numberOfHousesScores);
+					sheetStatistics.Cells[year + 2, 9] = Average(year, _rentScores);
+					sheetStatistics.Cells[year + 2, 10] = Average(year, _sustainabilityScores);
 				}
 			}
 			finally

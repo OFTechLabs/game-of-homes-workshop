@@ -56,7 +56,7 @@ namespace GameOfHomes
 				Console.Write($@"{scenario + 1}");
 				Console.SetCursorPosition(20, 1);
 
-				Economy.Read("..\\Scenarios\\Scenario" + scenario + ".csv");
+				Economy.Read("..\\..\\Scenarios\\Scenario" + scenario + ".csv");
 				
 				var association = new HousingAssociation(0);
 				GatherData(association, scenario, 0);

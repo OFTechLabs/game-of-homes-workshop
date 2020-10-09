@@ -1,0 +1,56 @@
+﻿
+@font-face {
+    font-family: Sparklines;
+    src: url("Sparklines.ttf") format("truetype");
+}
+
+.Sparklines {
+    font-weight: normal;
+    font-style: normal;
+    line-height: normal;
+    font-family: 'Sparklines', sans-serif;
+    font-size: 18px;
+    animation: pulse;
+    animation-duration: 0.01s;
+    animation-iteration-count: 1;
+}
+
+.Sparklines .segment{    
+    color:#000000
+}
+
+.Sparklines .sparkline-start{    
+    color:#ce4b99
+}
+
+.Sparklines .sparkline-stop{    
+    color:#27A844
+}
+
+.Sparklines .text-start{    
+    font-family:sans-serif;
+    font-size:18px;
+    color:#000000;
+}
+
+.Sparklines .text-stop{    
+    font-family:sans-serif;
+    font-size:18px;
+    color:#000000
+}
+
+.Sparklines .text-min-max{    
+    font-family:sans-serif;
+    font-size:18px;
+    color:#000000
+}
+
+@keyframes pulse {
+    0% {
+        font-size: 0px;
+    }
+
+    100% {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,159 @@
+﻿.pie-chart{
+}
+
+    .pie-chart div {
+        background:white;
+        border: white;
+        border-style: solid;
+        border-width: 1px;
+    }
+
+    .pie-chart div svg{
+        display: block;
+        margin: auto;
+        
+    }
+
+    /*
+    .pie-chart div svg .background-rect{
+        width:100%;
+        height:100%;
+        fill:white;
+        stroke:white;
+        stroke-width:0.5;            
+    }
+    .pie-chart div svg .hole{
+        fill: #fff;
+    }
+
+    .pie-chart div svg .ring{
+        fill: transparent;
+        stroke-width:3;
+        stroke:#d2d3d4;
+    }
+    */
+
+
+    .pie-chart div svg .segment-1{    
+        fill:#ce4b99
+    }
+    .pie-chart div svg .segment-2{    
+        fill:#27A844
+    }
+    .pie-chart div svg .segment-3{    
+        fill:#377bbc
+    }
+    .pie-chart div svg .segment-4{    
+        fill:#fe2712
+    }
+
+    .pie-chart div svg .segment-5{    
+        fill:#fc600a
+    }
+    .pie-chart div svg .segment-6{    
+        fill:#fb9902
+    }
+    .pie-chart div svg .segment-7{    
+        fill:#fccc1a
+    }
+    .pie-chart div svg .segment-8{    
+        fill:#fefe33
+    }
+    .pie-chart div svg .segment-9{    
+        fill:#b2d732
+    }
+    .pie-chart div svg .segment-10{    
+        fill:#66b032
+    }
+/*
+    .pie-chart div svg .pie-text {
+        fill: #000;
+        transform: translateY(0.25em);
+    }
+    
+    .pie-chart div svg g .pie-number {
+        font-size: 0.5em;
+        line-height: 1;
+        text-anchor: middle;
+        transform: translateY(-0.25em);
+    }
+    
+    .pie-chart div svg g .pie-label {
+        font-size: 0.2em;
+        text-transform: uppercase;
+        text-anchor: middle;
+        transform: translateY(0.3em);
+    }
+*/
+    .pie-chart div .pie-key{
+        margin: 20px;
+    }
+
+    .pie-chart div .pie-key [class*="legend-"] {
+        margin: 5px;
+        margin-right: 10px;
+        display: inline-block;
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        /*
+        width: 26px;
+        height: 26px;
+        */
+        border-radius: 50%;
+    }
+
+    .pie-chart div figcaption .pie-key-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 0.9em;
+    }
+
+    .pie-chart div figcaption .pie-key-list li {
+        margin: 0 0 8px;
+        padding: 0;
+
+    }
+
+    .pie-chart div figcaption ul .legend-dot-1 {
+        background:#ce4b99;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-2 {
+        background:#27A844;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-3 {
+        background:#377bbc;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-4 {
+        background:#fe2712;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-5 {
+        background:#fc600a;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-6 {
+        background:#fb9902;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-7 {
+        background:#fccc1a;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-8 {
+        background:#fefe33;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-9 {
+        background:#b2d732;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-10 {
+        background:#66b032;
+        transform: translateY(-0.1em);
+    }
+

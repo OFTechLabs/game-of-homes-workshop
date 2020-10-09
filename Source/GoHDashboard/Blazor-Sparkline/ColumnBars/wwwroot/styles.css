@@ -1,0 +1,54 @@
+﻿@font-face {
+    font-family: ColumnBars;
+    src: url("ColumnBars.ttf") format("truetype");
+}
+
+.ColumnBars {
+    font-weight: normal;
+    font-style: normal;
+    line-height: normal;
+    font-family: 'ColumnBars', sans-serif;
+    font-size: 18px;
+}
+
+.ColumnBars .bar-first{    
+    color:#757e86
+}
+
+.ColumnBars .bar{    
+    color:#000000
+}
+
+.ColumnBars .bar-last{    
+    color:#000000
+}
+
+.ColumnBars .text-start{    
+    font-family:sans-serif;
+    font-size:18px;
+    color:#000000;
+}
+
+.ColumnBars .text-stop{    
+    font-family:sans-serif;
+    font-size:18px;
+    color:#000000
+}
+
+.ColumnBars .text-min-max{    
+    font-family:sans-serif;
+    font-size:18px;
+    color:#000000
+}
+
+/*
+@keyframes pulse {
+    0% {
+        font-size: 0px;
+    }
+
+    100% {
+        font-size: 18px;
+    }
+}
+*/

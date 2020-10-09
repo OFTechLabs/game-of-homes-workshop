@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace GameOfHomes
+namespace GoHCalculator
 {
 	[DebuggerDisplay("{Name}")]
 	public abstract class ProjectType

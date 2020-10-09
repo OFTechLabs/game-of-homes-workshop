@@ -1,7 +1,7 @@
 using System;
 using static System.Double;
 
-namespace GameOfHomes
+namespace GoHCalculator
 {
 	/// <summary>
 	/// Term structure curve modeled by Nelson-Siegel parameters.

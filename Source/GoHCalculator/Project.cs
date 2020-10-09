@@ -1,4 +1,4 @@
-﻿namespace GameOfHomes
+﻿namespace GoHCalculator
 {
 	public abstract class Project<TProjectType> where TProjectType : ProjectType
 	{

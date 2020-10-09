@@ -1,6 +1,6 @@
 using System;
 
-namespace GameOfHomes
+namespace GoHCalculator
 {
 	public static class Program
 	{

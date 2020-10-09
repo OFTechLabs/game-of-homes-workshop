@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GameOfHomes
+namespace GoHCalculator
 {
 	public class RenovationProjectType : ProjectType
 	{

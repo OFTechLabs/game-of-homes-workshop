@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace GameOfHomes
+﻿namespace GoHCalculator
 {
 	public abstract class Policy
 	{

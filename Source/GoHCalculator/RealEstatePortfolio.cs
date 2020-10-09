@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace GameOfHomes
+namespace GoHCalculator
 {
 	public class RealEstatePortfolio
 	{

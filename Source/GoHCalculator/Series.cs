@@ -1,4 +1,4 @@
-﻿namespace GameOfHomes
+﻿namespace GoHCalculator
 {
 	public enum Series
 	{

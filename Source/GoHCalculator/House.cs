@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GameOfHomes
+namespace GoHCalculator
 {
 	public class House
 	{

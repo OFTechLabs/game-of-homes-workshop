@@ -1,4 +1,4 @@
-﻿namespace GameOfHomes
+﻿namespace GoHCalculator
 {
 	class PolicyImplementation : Policy
 	{

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.IO;
 using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 
-namespace GameOfHomes
+namespace GoHCalculator
 {
 	public static class Economy
 	{

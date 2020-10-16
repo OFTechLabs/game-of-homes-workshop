@@ -32,7 +32,6 @@
     <ProjectReference Include="../Blazor-Sparkline/MiniPie/MiniPie.csproj" />
     <ProjectReference Include="../Blazor-Sparkline/WinLoss/WinLoss.csproj" />
     <ProjectReference Include="../Blazor-Sparkline/BulletBars/BulletBars.csproj" />
-    <ProjectReference Include="..\..\GoHCalculator\GoHCalculator.csproj" />
 
   </ItemGroup>
 

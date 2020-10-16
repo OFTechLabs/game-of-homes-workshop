@@ -10,10 +10,11 @@ namespace GoHCalculator
 	{
         private static List<List<double>> _series;
 
-		public static void Read(string fileName)
-        {
+		public static void Read(int scenario)
+		{
+			var fileName = $@"..\..\Scenarios\Scenario{scenario}.csv";
             var lines = File.ReadAllLines(fileName);
-			var result = lines.Select(l => l.Split(';').Select(s => double.Parse(s, CultureInfo.GetCultureInfo("nl-NL").NumberFormat)).ToList());
+			var result = lines.Select(l => l.Split(';').Select(s => double.Parse(s, CultureInfo.InvariantCulture.NumberFormat)).ToList());
 			_series = result.ToList();
 			CurrentYear = 0;
 		}

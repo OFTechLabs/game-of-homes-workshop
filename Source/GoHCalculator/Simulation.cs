@@ -39,8 +39,13 @@ namespace GoHCalculator
 
 		public Dictionary<OutputType, double[,]> Run()
 		{
+			Console.Write(@"Simulating scenario ");
+
 			for (var scenario = 0; scenario < NumberOfScenarios; scenario++)
 			{
+				Console.Write($@"{scenario + 1}");
+				Console.SetCursorPosition(20, 1);
+
 				Economy.Read(scenario);
 				
 				var association = new HousingAssociation(0);

@@ -11,26 +11,12 @@ namespace WebAssemblyMan
 {
     public class LineChart : ComponentBase
     {
+
+        /// <summary>
+        /// Input specified as "[x1,x2, ...],[y1,y2, ...],...".
+        /// </summary>
         [Parameter]
-        public string InputSeries1 { get; set; }
-        [Parameter]
-        public string InputSeries2 { get; set; }
-        [Parameter]
-        public string InputSeries3 { get; set; }
-        [Parameter]
-        public string InputSeries4 { get; set; }
-        [Parameter]
-        public string InputSeries5 { get; set; }
-        [Parameter]
-        public string InputSeries6 { get; set; }
-        [Parameter]
-        public string InputSeries7 { get; set; }
-        [Parameter]
-        public string InputSeries8 { get; set; }
-        [Parameter]
-        public string InputSeries9 { get; set; }
-        [Parameter]
-        public string InputSeries10 { get; set; }
+        public string InputSeries { get; set; }
 
         [Parameter]
         public string InputLabels { get; set; }
@@ -47,51 +33,18 @@ namespace WebAssemblyMan
             builder.OpenElement(++seq, "div");
             builder.AddAttribute(++seq, "class", "main");
 
-            string[] inputLabelsArr = InputLabels.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            string[] xAxisLabelsArr = XAxisLabels.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var inputLabelsArr = InputLabels.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var xAxisLabelsArr = XAxisLabels.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
-            int numLines = 0;
-            if (InputSeries1!=null) numLines++;
-            if (InputSeries2!=null) numLines++;
-            if (InputSeries3!=null) numLines++;
-            if (InputSeries4!=null) numLines++;
-            if (InputSeries5!=null) numLines++;
-            if (InputSeries6!=null) numLines++;
-            if (InputSeries7!=null) numLines++;
-            if (InputSeries8!=null) numLines++;
-            if (InputSeries9!=null) numLines++;
-            if (InputSeries10!=null) numLines++;
-
-            string[] inputDataArr=new string[numLines];
-            if (InputSeries1!=null) inputDataArr[0] = InputSeries1;
-            if (InputSeries2!=null) inputDataArr[1] = InputSeries2;
-            if (InputSeries3!=null) inputDataArr[2] = InputSeries3;
-            if (InputSeries4!=null) inputDataArr[3] = InputSeries4;
-            if (InputSeries5!=null) inputDataArr[4] = InputSeries5;
-            if (InputSeries6!=null) inputDataArr[5] = InputSeries6;
-            if (InputSeries7!=null) inputDataArr[6] = InputSeries7;
-            if (InputSeries8!=null) inputDataArr[7] = InputSeries8;
-            if (InputSeries9!=null) inputDataArr[8] = InputSeries9;
-            if (InputSeries10!=null) inputDataArr[9] = InputSeries10;
-
+            var inputLines = InputSeries.Trim('[', ']').Split("],[");
+            var inputNumbers = inputLines.Select(l => l.Split(',').Select(double.Parse).ToArray()).ToArray();
+            
             double maxY=0.0;
-            int numValues=0;
-            int numXLabels=xAxisLabelsArr.Length;
-            foreach (string iData in inputDataArr)
+            var numValues = 0;
+            foreach (var data in inputNumbers)
             {
-                string[] inputLineArr = iData.Split(',');
-                double[] doubleAry=new double[inputLineArr.Length];
-                if (numValues<inputLineArr.Length)
-                    numValues=inputLineArr.Length;
-                for (int i = 0; i < inputLineArr.Length; i++)
-                {
-                    double data = 0;
-                    bool isDouble2=double.TryParse(inputLineArr[i],out data);
-                    doubleAry[i]=data;
-                    if (maxY<data)
-                        maxY=data;
-                }
-
+	            maxY = Math.Max(data.Max(), maxY);
+	            numValues = Math.Max(data.Length, numValues);
             }
 
             double boundHeight = 150.0;
@@ -108,6 +61,8 @@ namespace WebAssemblyMan
 
             double gridYUnits = 10;
             double gridXUnits = 10; //not required
+
+            int numXLabels = xAxisLabelsArr.Length;
 
             //1. Determine number of input values in xaxis and use it for numVerticalLines
             int numVerticalLines = numValues;
@@ -148,20 +103,17 @@ namespace WebAssemblyMan
             gridx = horizontalStartSpace;
             gridy = boundHeight - verticalStartSpace;
             int colorcounter = 0;
-            foreach (string iData in inputDataArr)
+            foreach (var data in inputNumbers)
             {
                 string chartLine = "";
                 double gridValueX = 0;
                 double gridValueY = 0;
                 bool firstTime = true;
 
-                string[] inputLineArr = iData.Split(',');
-                double[] intAry=new double[inputLineArr.Length];
-                for (int i = 0; i < inputLineArr.Length; i++)
+                double[] intAry=new double[data.Length];
+                for (int i = 0; i < data.Length; i++)
                 {
-                    double data = 0;
-                    bool isDouble2=double.TryParse(inputLineArr[i],out data);
-                    intAry[i]=data;
+	                intAry[i]=data[i];
                 }
 
 
@@ -227,7 +179,7 @@ namespace WebAssemblyMan
             builder.AddAttribute(++seq, "class", "key-list");
 
             colorcounter = 0;
-            foreach (string iData in inputDataArr)
+            foreach (var iData in inputLines)
             {
                 builder.OpenElement(++seq, "li");
                 builder.OpenElement(++seq, "span");

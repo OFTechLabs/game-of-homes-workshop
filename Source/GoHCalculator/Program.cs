@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Security.Claims;
+using System.Runtime.InteropServices;
 using System.Text.Json;
 
 namespace GoHCalculator
@@ -34,19 +33,37 @@ namespace GoHCalculator
 			var jsonString = JsonSerializer.Serialize(output);
 			File.WriteAllText(@".\wwwroot\results.json", jsonString);
 
-			//var info = new ProcessStartInfo
-			//{
-			//	WorkingDirectory = @"C:\Users\jacobd\Source\game-of-homes-workshop\Source\GoHDashboard\Blazor-Dashboard", 
-			//	Arguments = "run",
-			//	FileName = "dotnet",
-			//	WindowStyle = ProcessWindowStyle.Maximized
-			//};
-			//Process.Start(info);
+			Console.WriteLine("Starting the host");
+
+			var info = new ProcessStartInfo
+			{
+				WorkingDirectory = @"..\..\Source\GoHDashboard\Blazor-Dashboard", 
+				Arguments = "run",
+				FileName = "dotnet"
+			};
+			Process.Start(info);
+
+			OpenBrowser("http://localhost:5000");
 		}
 
-		private static double Average(IEnumerable<double> values, int year, int horizon)
+		private static void OpenBrowser(string url)
 		{
-			return values.Where((v, s) => (s - year) % horizon == 0).Average();
+			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+			{
+				Process.Start(new ProcessStartInfo(url) { UseShellExecute = true }); // Works ok on windows
+			}
+			else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+			{
+				Process.Start("xdg-open", url);  // Works ok on linux
+			}
+			else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+			{
+				Process.Start("open", url); // Not tested
+			}
+			else
+			{
+				Console.WriteLine("Please open a browser manually");
+			}
 		}
 	}
 }

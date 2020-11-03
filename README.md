@@ -139,12 +139,12 @@ Run the following statement
 
 `dotnet watch -p .\GoHDashboard\Blazor-Dashboard run`
 
-Start a browser a go to page `http://localhost:5000`. This opens the dashboard that shows the results.
+Start a browser a go to page `http://localhost:5000`. This opens the dashboard that shows the results. During the first run this will only show 'loading'.
 
 During the assignments you have to refresh this page regularly to see how the modifications pan out.
 
-# Running the game of homes simulation
+## Running the game of homes simulation
 
-Just press F5 or menu `Run --> Start debugging`. If required, choose the game of homes calculator.
+Just press F5 or go to menu `Run --> Start debugging`. If required, choose the game of homes calculator. This starts a simulation and some output is printed to the terminal. If finished, head over to the browser and refresh. The new results will be shown.
 
 

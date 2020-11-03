@@ -124,8 +124,8 @@ namespace Blazor_Dashboard.Pages
             AddScatterTrace(averageResultsData, _results["Houses"], "Number of houses");
             AddScatterTrace(averageResultsData, _results["Rent"], "Rent");
             AddScatterTrace(averageResultsData, _results["Sustainability"], "Sustainability");
-            AddScatterTrace(averageResultsData, _results["Maintenance"], "Maintenance");
-            AddScatterTrace(averageResultsData, _results["NumberOfBadHouses"], "NumberOfBadHouses");
+            AddScatterTrace(averageResultsData, _results["Maintenance"], "Maintenance costs");
+            AddScatterTrace(averageResultsData, _results["NumberOfBadHouses"], "Number of bad houses");
         }
 
         private void LoadBankruptcyData(int horizon)

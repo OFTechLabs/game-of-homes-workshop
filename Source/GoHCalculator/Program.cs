@@ -17,16 +17,14 @@ namespace GoHCalculator
 			Console.CursorVisible = false;
 			Console.WriteLine(@"Game of Homes......");
 			var rawData = new Simulation().Run();
-				
 			var output = rawData.ToDictionary(p => p.Key.ToString(), p =>
 			{
 				var values = new List<double>();
-				for (var r = 0; r < p.Value.GetLength(0); r++)
+
+				for (var t = 0; t < p.Value.GetLength(0); t++)
 				{
-					for (var c = 0; c < p.Value.GetLength(1); c++)
-					{
-						values.Add(p.Value[r,c]);
-					}
+					values.Add(p.Value[t].Average());
+					
 				}
 				return values;
 			});

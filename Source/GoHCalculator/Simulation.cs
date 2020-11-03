@@ -29,15 +29,23 @@ namespace GoHCalculator
 		private const int NumberOfScenarios = 100;
 		private const int Horizon = 30;
 
-		private readonly Dictionary<OutputType, double[,]> _results;
+		private readonly Dictionary<OutputType, double[][]> _results;
 		
 		public Simulation()
 		{
-			_results = ((OutputType[])Enum.GetValues(typeof(OutputType))).Except(new [] {OutputType.NumberOfBankruptcies}).ToDictionary(ot => ot, ot => new double[NumberOfScenarios, Horizon + 2]);
-			_results.Add(OutputType.NumberOfBankruptcies, new double[1, Horizon + 2]);
+			_results = ((OutputType[])Enum.GetValues(typeof(OutputType))).ToDictionary(ot => ot, ot => 
+			{
+				var horizon = ot == OutputType.NumberOfBankruptcies ? 1 : Horizon + 2;
+				var result = new double[horizon][];
+				for (int t = 0; t < horizon; t++)
+				{
+					result[t] = new double[NumberOfScenarios];
+				}
+				return result;
+			});
 		}
 
-		public Dictionary<OutputType, double[,]> Run()
+		public Dictionary<OutputType, double[][]> Run()
 		{
 			Console.Write(@"Simulating scenario ");
 
@@ -64,20 +72,20 @@ namespace GoHCalculator
 
 		private void GatherData(HousingAssociation association, int scenario, int t)
 		{
-			_results[OutputType.SolvencyRatio][scenario, t] = association.SolvencyRatio;
-			_results[OutputType.Houses][scenario, t] = association.RealEstatePortfolio.NumberOfHouses;
-			_results[OutputType.Rent][scenario, t] = association.AverageRent;
-			_results[OutputType.Sustainability][scenario, t] = association.AverageSustainabilityOfHouses;
-			_results[OutputType.Maintenance][scenario, t] = association.AverageMaintenanceExpenses;
-			_results[OutputType.Debt][scenario, t] = association.Debt;
-			_results[OutputType.Interest][scenario, t] = association.Interest;
-			_results[OutputType.Scores][scenario, t] = association.Score;
-			_results[OutputType.NumberOfHousesScore][scenario, t] = association.ScoreNumberOfHouses;
-			_results[OutputType.RentScores][scenario, t] = association.ScoreRent;
-			_results[OutputType.SustainabilityScores][scenario, t] = association.ScoreSustainability;
-			_results[OutputType.NumberOfCheapHouses][scenario, t] = association.RealEstatePortfolio.Houses.Count(w => w.MonthlyRent / association.CumulativeInflation < HousingAssociation.LowRent);
-			_results[OutputType.NumberOfBadHouses][scenario, t] = association.RealEstatePortfolio.Houses.Count(w => w.Sustainability < HousingAssociation.Sufficient);
-			_results[OutputType.NumberOfBankruptcies][0, t] += association.IsBankrupt ? 1 : 0;
+			_results[OutputType.SolvencyRatio][t][scenario] = association.SolvencyRatio;
+			_results[OutputType.Houses][t][scenario] = association.RealEstatePortfolio.NumberOfHouses;
+			_results[OutputType.Rent][t][scenario] = association.AverageRent;
+			_results[OutputType.Sustainability][t][scenario] = association.AverageSustainabilityOfHouses;
+			_results[OutputType.Maintenance][t][scenario] = association.AverageMaintenanceExpenses;
+			_results[OutputType.Debt][t][scenario] = association.Debt;
+			_results[OutputType.Interest][t][scenario] = association.Interest;
+			_results[OutputType.Scores][t][scenario] = association.Score;
+			_results[OutputType.NumberOfHousesScore][t][scenario] = association.ScoreNumberOfHouses;
+			_results[OutputType.RentScores][t][scenario] = association.ScoreRent;
+			_results[OutputType.SustainabilityScores][t][scenario] = association.ScoreSustainability;
+			_results[OutputType.NumberOfCheapHouses][t][scenario] = association.RealEstatePortfolio.Houses.Count(w => w.MonthlyRent / association.CumulativeInflation < HousingAssociation.LowRent);
+			_results[OutputType.NumberOfBadHouses][t][scenario] = association.RealEstatePortfolio.Houses.Count(w => w.Sustainability < HousingAssociation.Sufficient);
+			_results[OutputType.NumberOfBankruptcies][0][t] += association.IsBankrupt ? 1 : 0;
 		}
 	}
 }

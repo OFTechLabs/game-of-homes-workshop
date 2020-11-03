@@ -45,16 +45,16 @@
             </div>
         </div>
         <div class="card">
-            <div class="card-header">Total score per scenario</div>
+            <div class="card-header">Average Results</div>
             <div class="card-body">
 
-                @if (_years == null || totalScoreData == null)
+                @if (_years == null || averageResultsData == null)
                 {
                     <p>Loading data..</p>
                 }
                 else
                 {
-                    <PlotlyChart style="height: 60vh; min-height: 350px" @bind-Config="totalScoreConfig" @bind-Layout="totalScoreLayout" @bind-Data="totalScoreData" @ref="totalScoreChart" />
+                    <PlotlyChart style="height: 60vh; min-height: 350px" @bind-Config="averageResultsConfig" @bind-Layout="averageResultsLayout" @bind-Data="averageResultsData" @ref="averageResultsChart" />
                 }
             </div>
         </div>
@@ -74,7 +74,21 @@
                 }
             </div>
         </div>
+        <div class="card">
+            <div class="card-header">Average debt</div>
+            <div class="card-body">
+                @if (_years == null || debtData == null)
+                {
+                    <p>Loading data..</p>
+                }
+                else
+                {
+                    <PlotlyChart Config="debtConfig" Layout="debtLayout" Data="debtData" @ref="debtChart"/>
+                }
+            </div>
+        </div>
 
+        <hr />
         <hr />
         <div class="row">
             <div class="col-xs-12">

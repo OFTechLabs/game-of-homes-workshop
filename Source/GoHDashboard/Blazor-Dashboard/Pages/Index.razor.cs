@@ -14,27 +14,31 @@ namespace Blazor_Dashboard.Pages
 {
     public partial class Index : ComponentBase
     {
-	    Dictionary<string, List<double>> _results;
+	    Dictionary<string, List<object>> _results;
         double _totalScore;
         string _scoreDecomposition;
         List<object> _years;
 
         PlotlyChart scoresChart;
-        Config scoresConfig = new Config();
+        Config scoresConfig = new Config()
+        {
+            Responsive = true
+        };
         Layout scoresLayout = new Layout();
         // Using of the interface IList is important for the event callback!
         IList<ITrace> scoresData;
 
-        PlotlyChart totalScoreChart;
-        Config totalScoreConfig = new Config();
-
-        Layout totalScoreLayout = new Layout()
+        PlotlyChart averageResultsChart;
+        Config averageResultsConfig = new Config()
         {
-            ShowLegend = false,
-            Colorway = new List<object> { "#182844" }
+            Responsive = true
         };
-        // Using of the interface IList is important for the event callback!
-        IList<ITrace> totalScoreData;
+
+        Layout averageResultsLayout = new Layout()
+        {
+            //Colorway = new List<object> { "#182844" }
+        };
+        IList<ITrace> averageResultsData;
 
         PlotlyChart bankruptChart;
 
@@ -50,6 +54,17 @@ namespace Blazor_Dashboard.Pages
         // Using of the interface IList is important for the event callback!
         IList<ITrace> bankruptData;
 
+        PlotlyChart debtChart;
+
+        Config debtConfig = new Config()
+        {
+            Responsive = true
+        };
+
+        Layout debtLayout = new Layout();
+    
+        IList<ITrace> debtData;
+
         [Inject]
         private HttpClient HttpClient { get; set; }
 
@@ -58,28 +73,29 @@ namespace Blazor_Dashboard.Pages
             try
             {
                 var jsonString = await HttpClient.GetStringAsync("results.json");
-                _results = JsonSerializer.Deserialize<Dictionary<string, List<double>>>(jsonString);
-                var horizon = _results.First().Value.Count / 100;
+                _results = JsonSerializer.Deserialize<Dictionary<string, List<double>>>(jsonString).ToDictionary(p => p.Key, p => p.Value.Cast<object>().ToList());
+                var horizon = _results.Values.First().Count;
                 Console.WriteLine($"Horizon = {horizon}");
 
                 var numberOfScenarios = _results["Scores"].Count / horizon;
 
-                _totalScore = Average(_results["Scores"], horizon - 1, horizon);
-                var numberOfHouses = Average(_results["NumberOfHousesScore"], horizon - 1, horizon);
-                var sustainability = Average(_results["SustainabilityScores"], horizon - 1, horizon);
-                var rent = Average(_results["RentScores"], horizon - 1, horizon);
+                _totalScore = (double)_results["Scores"][horizon - 1];
+                var numberOfHouses =(double)_results["NumberOfHousesScore"][horizon - 1];
+                var sustainability = (double)_results["SustainabilityScores"][horizon - 1];
+                var rent = (double)_results["RentScores"][horizon - 1];
                 _scoreDecomposition = $"{numberOfHouses:N0},{sustainability:N0},{rent:N0}";
 
-                var averageScore = GetAverageResult("Scores", horizon);
-                var averageNumberOfHousesScore = GetAverageResult("NumberOfHousesScore", horizon);
-                var averageRentScore = GetAverageResult("RentScores", horizon);
-                var averageSustainabilityScore = GetAverageResult("SustainabilityScores", horizon);
+                var averageScore = _results["Scores"];
+                var averageNumberOfHousesScore = _results["NumberOfHousesScore"];
+                var averageRentScore = _results["RentScores"];
+                var averageSustainabilityScore = _results["SustainabilityScores"];
                 _years = Enumerable.Range(0, horizon).Select(t => DateTime.Today.Year + t).Cast<object>().ToList();
                 Console.WriteLine($"Years = {_years}");
 
                 LoadScoresData(averageScore, averageNumberOfHousesScore, averageRentScore, averageSustainabilityScore);
-                LoadTotalScoreData(horizon, numberOfScenarios);
+                LoadAverageResultsData(horizon, numberOfScenarios);
                 LoadBankruptcyData(horizon);
+                LoadDebtData(horizon);
 
                 StateHasChanged();
             }
@@ -100,17 +116,16 @@ namespace Blazor_Dashboard.Pages
             AddScatterTrace(scoresData, averageSustainabilityScore, "Average sustainability score");
         }
 
-        private void LoadTotalScoreData(int horizon, int numberOfScenarios)
+        private void LoadAverageResultsData(int horizon, int numberOfScenarios)
         {
-            totalScoreData = new List<ITrace>();
+            averageResultsData = new List<ITrace>();
 
-            var rawData = _results["Scores"];
-
-            for (var s = 0; s < numberOfScenarios; s++)
-            {
-                var scenario = rawData.Skip(s * horizon).Take(horizon).Cast<object>().ToList();
-                AddScatterTrace(totalScoreData, scenario, $"Scenario {s + 1}");
-            }
+            AddScatterTrace(averageResultsData, _results["SolvencyRatio"], "Solvency ratio");
+            AddScatterTrace(averageResultsData, _results["Houses"], "Number of houses");
+            AddScatterTrace(averageResultsData, _results["Rent"], "Rent");
+            AddScatterTrace(averageResultsData, _results["Sustainability"], "Sustainability");
+            AddScatterTrace(averageResultsData, _results["Maintenance"], "Maintenance");
+            AddScatterTrace(averageResultsData, _results["NumberOfBadHouses"], "NumberOfBadHouses");
         }
 
         private void LoadBankruptcyData(int horizon)
@@ -120,15 +135,10 @@ namespace Blazor_Dashboard.Pages
             AddScatterBar(bankruptData, data, "Bankruptcies");
         }
 
-        private List<object> GetAverageResult(string key, int horizon)
+        private void LoadDebtData(int horizon)
         {
-            //return string.Join(',', Enumerable.Range(0, horizon).Select(t => $"{Average(_results[key], t, horizon)}"));
-            return Enumerable.Range(0, horizon).Select(t => Average(_results[key], t, horizon)).Cast<object>().ToList();
-        }
-
-        private static double Average(IEnumerable<double> values, int year, int horizon)
-        {
-            return Math.Round(values.Where((v, s) => (s - year) % horizon == 0).Average(), 0);
+            debtData = new List<ITrace>();
+            AddScatterTrace(debtData, _results["Debt"], "Debt");
         }
 
         private void AddScatterTrace(IList<ITrace> data, IList<object> series, string name)

@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}/../bin/Debug/GameOfHomes.dll",
             "args": [],
             "cwd": "${workspaceFolder}/GoHCalculator",
-            "console": "internalConsole",
+            "console": "externalTerminal",
             "stopAtEntry": false
         },
         {

@@ -14,7 +14,7 @@ namespace GoHCalculator
 	{
 		public static void Main()
 		{
-			//Console.CursorVisible = false;
+			Console.CursorVisible = false;
 			Console.WriteLine(@"Game of Homes......");
 			var rawData = new Simulation().Run();
 				

@@ -44,7 +44,7 @@ namespace GoHCalculator
 			for (var scenario = 0; scenario < NumberOfScenarios; scenario++)
 			{
 				Console.Write($@"{scenario + 1}");
-				Console.SetCursorPosition(20, 1);
+				//Console.SetCursorPosition(20, 1);
 
 				Economy.Read(scenario);
 				

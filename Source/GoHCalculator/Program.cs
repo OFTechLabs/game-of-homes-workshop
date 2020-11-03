@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Text.Json;
 
@@ -12,7 +14,7 @@ namespace GoHCalculator
 	{
 		public static void Main()
 		{
-			Console.CursorVisible = false;
+			//Console.CursorVisible = false;
 			Console.WriteLine(@"Game of Homes......");
 			var rawData = new Simulation().Run();
 				
@@ -31,39 +33,7 @@ namespace GoHCalculator
 
 			Console.WriteLine(@"Creating output json file......");
 			var jsonString = JsonSerializer.Serialize(output);
-			File.WriteAllText(@".\wwwroot\results.json", jsonString);
-
-			Console.WriteLine("Starting the host");
-
-			var info = new ProcessStartInfo
-			{
-				WorkingDirectory = @"..\..\Source\GoHDashboard\Blazor-Dashboard", 
-				Arguments = "run",
-				FileName = "dotnet"
-			};
-			Process.Start(info);
-
-			OpenBrowser("http://localhost:5000");
-		}
-
-		private static void OpenBrowser(string url)
-		{
-			if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-			{
-				Process.Start(new ProcessStartInfo(url) { UseShellExecute = true }); // Works ok on windows
-			}
-			else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-			{
-				Process.Start("xdg-open", url);  // Works ok on linux
-			}
-			else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-			{
-				Process.Start("open", url); // Not tested
-			}
-			else
-			{
-				Console.WriteLine("Please open a browser manually");
-			}
+			File.WriteAllText(@"..\..\bin\debug\wwwroot\results.json", jsonString);
 		}
 	}
 }

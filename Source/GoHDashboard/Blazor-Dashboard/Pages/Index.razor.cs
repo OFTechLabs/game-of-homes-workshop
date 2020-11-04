@@ -19,51 +19,58 @@ namespace Blazor_Dashboard.Pages
         string _scoreDecomposition;
         List<object> _years;
 
-        PlotlyChart scoresChart;
-        Config scoresConfig = new Config()
+        PlotlyChart _scoresChart;
+        Config _scoresConfig = new Config()
         {
             Responsive = true
         };
-        Layout scoresLayout = new Layout();
+        Layout _scoresLayout = new Layout();
         // Using of the interface IList is important for the event callback!
-        IList<ITrace> scoresData;
+        IList<ITrace> _scoresData;
 
-        PlotlyChart averageResultsChart;
-        Config averageResultsConfig = new Config()
+        PlotlyChart _averageResultsChart;
+        Config _averageResultsConfig = new Config()
         {
             Responsive = true
         };
+        Layout _averageResultsLayout = new Layout();
+        IList<ITrace> _averageResultsData;
 
-        Layout averageResultsLayout = new Layout()
-        {
-            //Colorway = new List<object> { "#182844" }
-        };
-        IList<ITrace> averageResultsData;
-
-        PlotlyChart bankruptChart;
-
-        Config bankruptConfig = new Config()
+        PlotlyChart _bankruptPerYearChart;
+        Config _bankruptPerYearConfig = new Config()
         {
             Responsive = true
         };
-
-        Layout bankruptLayout = new Layout()
+        Layout _bankruptPerYearLayout = new Layout()
         {
             BarMode = BarModeEnum.Stack
         };
-        // Using of the interface IList is important for the event callback!
-        IList<ITrace> bankruptData;
 
-        PlotlyChart debtChart;
+        bool _containsBankruptScenarios;
 
-        Config debtConfig = new Config()
+        IList<ITrace> _bankruptPerYearData;
+
+        PlotlyChart _bankruptTotalChart;
+         Config _bankruptTotalConfig = new Config()
+        {
+            Responsive = true
+        };
+        Layout _bankruptTotalLayout = new Layout()
+        {
+            BarMode = BarModeEnum.Stack
+        };
+         IList<ITrace> _bankruptTotalData;
+
+        PlotlyChart _debtChart;
+
+        Config _debtConfig = new Config()
         {
             Responsive = true
         };
 
-        Layout debtLayout = new Layout();
+        Layout _debtLayout = new Layout();
     
-        IList<ITrace> debtData;
+        IList<ITrace> _debtData;
 
         [Inject]
         private HttpClient HttpClient { get; set; }
@@ -75,8 +82,7 @@ namespace Blazor_Dashboard.Pages
                 var jsonString = await HttpClient.GetStringAsync("results.json");
                 _results = JsonSerializer.Deserialize<Dictionary<string, List<double>>>(jsonString).ToDictionary(p => p.Key, p => p.Value.Cast<object>().ToList());
                 var horizon = _results.Values.First().Count;
-                Console.WriteLine($"Horizon = {horizon}");
-
+                
                 var numberOfScenarios = _results["Scores"].Count / horizon;
 
                 _totalScore = (double)_results["Scores"][horizon - 1];
@@ -90,8 +96,7 @@ namespace Blazor_Dashboard.Pages
                 var averageRentScore = _results["RentScores"];
                 var averageSustainabilityScore = _results["SustainabilityScores"];
                 _years = Enumerable.Range(0, horizon).Select(t => DateTime.Today.Year + t).Cast<object>().ToList();
-                Console.WriteLine($"Years = {_years}");
-
+            
                 LoadScoresData(averageScore, averageNumberOfHousesScore, averageRentScore, averageSustainabilityScore);
                 LoadAverageResultsData(horizon, numberOfScenarios);
                 LoadBankruptcyData(horizon);
@@ -108,37 +113,48 @@ namespace Blazor_Dashboard.Pages
         private void LoadScoresData(List<object> averageScore, List<object> averageNumberOfHousesScore, List<object> averageRentScore,
             List<object> averageSustainabilityScore)
         {
-            scoresData = new List<ITrace>();
+            _scoresData = new List<ITrace>();
 
-            AddScatterTrace(scoresData, averageScore, "Average total score");
-            AddScatterTrace(scoresData, averageNumberOfHousesScore, "Average number of houses score");
-            AddScatterTrace(scoresData, averageRentScore, "Average rent score");
-            AddScatterTrace(scoresData, averageSustainabilityScore, "Average sustainability score");
+            AddScatterTrace(_scoresData, averageScore, "Average total score");
+            AddScatterTrace(_scoresData, averageNumberOfHousesScore, "Average number of houses score");
+            AddScatterTrace(_scoresData, averageRentScore, "Average rent score");
+            AddScatterTrace(_scoresData, averageSustainabilityScore, "Average sustainability score");
         }
 
         private void LoadAverageResultsData(int horizon, int numberOfScenarios)
         {
-            averageResultsData = new List<ITrace>();
+            _averageResultsData = new List<ITrace>();
 
-            AddScatterTrace(averageResultsData, _results["SolvencyRatio"], "Solvency ratio");
-            AddScatterTrace(averageResultsData, _results["Houses"], "Number of houses");
-            AddScatterTrace(averageResultsData, _results["Rent"], "Rent");
-            AddScatterTrace(averageResultsData, _results["Sustainability"], "Sustainability");
-            AddScatterTrace(averageResultsData, _results["Maintenance"], "Maintenance costs");
-            AddScatterTrace(averageResultsData, _results["NumberOfBadHouses"], "Number of bad houses");
+            AddScatterTrace(_averageResultsData, _results["SolvencyRatio"], "Solvency ratio");
+            AddScatterTrace(_averageResultsData, _results["Houses"], "Number of houses");
+            AddScatterTrace(_averageResultsData, _results["Rent"], "Rent");
+            AddScatterTrace(_averageResultsData, _results["Sustainability"], "Sustainability");
+            AddScatterTrace(_averageResultsData, _results["Maintenance"], "Maintenance costs");
+            AddScatterTrace(_averageResultsData, _results["NumberOfBadHouses"], "Number of bad houses");
         }
 
         private void LoadBankruptcyData(int horizon)
         {
-            bankruptData = new List<ITrace>();
-            var data = _results["NumberOfBankruptcies"].Cast<object>().ToList();
-            AddScatterBar(bankruptData, data, "Bankruptcies");
+            _bankruptPerYearData = new List<ITrace>();
+            var data = _results["NumberOfBankruptcies"];
+            AddScatterBar(_bankruptPerYearData, data, "Bankruptcies");
+
+            var numberOfBankruptcies = _results["NumberOfBankruptcies"].Cast<double>().Last();
+            _containsBankruptScenarios = numberOfBankruptcies > 0;
+            _bankruptTotalData = new List<ITrace>
+            {
+                new Pie
+                {
+                    Labels = new List<object>{ "Bankrupt", "Survived"},
+                    Values = new List<object>{ numberOfBankruptcies, 100 - numberOfBankruptcies}
+                }
+            };
         }
 
         private void LoadDebtData(int horizon)
         {
-            debtData = new List<ITrace>();
-            AddScatterTrace(debtData, _results["Debt"], "Debt");
+            _debtData = new List<ITrace>();
+            AddScatterTrace(_debtData, _results["Debt"], "Debt");
         }
 
         private void AddScatterTrace(IList<ITrace> data, IList<object> series, string name)

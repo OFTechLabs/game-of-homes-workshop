@@ -35,11 +35,12 @@ namespace GoHCalculator
 		{
 			_results = ((OutputType[])Enum.GetValues(typeof(OutputType))).ToDictionary(ot => ot, ot => 
 			{
-				var horizon = ot == OutputType.NumberOfBankruptcies ? 1 : Horizon + 2;
+				var horizon = Horizon + 2;
+				var numberOfScenarios = ot == OutputType.NumberOfBankruptcies ? 1 : NumberOfScenarios;
 				var result = new double[horizon][];
 				for (int t = 0; t < horizon; t++)
 				{
-					result[t] = new double[NumberOfScenarios];
+					result[t] = new double[numberOfScenarios];
 				}
 				return result;
 			});
@@ -85,7 +86,7 @@ namespace GoHCalculator
 			_results[OutputType.SustainabilityScores][t][scenario] = association.ScoreSustainability;
 			_results[OutputType.NumberOfCheapHouses][t][scenario] = association.RealEstatePortfolio.Houses.Count(w => w.MonthlyRent / association.CumulativeInflation < HousingAssociation.LowRent);
 			_results[OutputType.NumberOfBadHouses][t][scenario] = association.RealEstatePortfolio.Houses.Count(w => w.Sustainability < HousingAssociation.Sufficient);
-			_results[OutputType.NumberOfBankruptcies][0][t] += association.IsBankrupt ? 1 : 0;
+			_results[OutputType.NumberOfBankruptcies][t][0] += association.IsBankrupt ? 1 : 0;
 		}
 	}
 }

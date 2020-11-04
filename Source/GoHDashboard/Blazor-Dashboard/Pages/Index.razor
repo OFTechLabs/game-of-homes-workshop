@@ -12,6 +12,13 @@
         <h1>Game Of Home Results</h1>
         <p>On this page you can find your score and gives you some insight in why you achieved this score.</p>
     </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <footer>
+                <p>&copy; Available under MIT License.</p>
+            </footer>
+        </div>
+    </div>
 </div>
 
 <div class="container-fluid">
@@ -34,13 +41,13 @@
             <div class="card-header">Scores</div>
             <div class="card-body">
 
-                @if (_years == null || scoresData == null)
+                @if (_years == null || _scoresData == null)
                 {
                     <p>Loading data..</p>
                 }
                 else
                 {
-                    <PlotlyChart style="height: 60vh; min-height: 350px" @bind-Config="scoresConfig" @bind-Layout="scoresLayout" @bind-Data="scoresData" @ref="scoresChart" />
+                    <PlotlyChart style="height: 60vh; min-height: 350px" @bind-Config="_scoresConfig" @bind-Layout="_scoresLayout" @bind-Data="_scoresData" @ref="_scoresChart" />
                 }
             </div>
         </div>
@@ -48,53 +55,59 @@
             <div class="card-header">Average Results</div>
             <div class="card-body">
 
-                @if (_years == null || averageResultsData == null)
+                @if (_years == null || _averageResultsData == null)
                 {
                     <p>Loading data..</p>
                 }
                 else
                 {
-                    <PlotlyChart style="height: 60vh; min-height: 350px" @bind-Config="averageResultsConfig" @bind-Layout="averageResultsLayout" @bind-Data="averageResultsData" @ref="averageResultsChart" />
+                    <PlotlyChart style="height: 60vh; min-height: 350px" @bind-Config="_averageResultsConfig" @bind-Layout="_averageResultsLayout" @bind-Data="_averageResultsData" @ref="_averageResultsChart" />
                 }
             </div>
         </div>
     </div>
-    <hr />
+    <p />
     <div class="card-deck">
         <div class="card">
-            <div class="card-header">% of scenarios where the association has gone bankrupt</div>
+            <div class="card-header">Part of scenarios where the association has gone bankrupt</div>
             <div class="card-body">
-                @if (_years == null || bankruptData == null)
+                @if (_years == null || _bankruptTotalData == null)
                 {
                     <p>Loading data..</p>
                 }
                 else
                 {
-                    <PlotlyChart Id="TestId" Config="bankruptConfig" Layout="bankruptLayout" Data="bankruptData" @ref="bankruptChart"/>
+                    <PlotlyChart Config="_bankruptTotalConfig" Layout="_bankruptTotalLayout" Data="_bankruptTotalData" @ref="_bankruptTotalChart"/>
+                }
+            </div>
+        </div>
+        <div class="card">
+        <div class="card-header">Part of scenarios where the association has gone bankrupt per year</div>
+            <div class="card-body">
+                @if (_years == null || _bankruptPerYearData == null)
+                {
+                    <p>Loading data..</p>
+                }
+                else
+                {
+                    @if (_containsBankruptScenarios)
+                    {
+                        <PlotlyChart Config="_bankruptPerYearConfig" Layout="_bankruptPerYearLayout" Data="_bankruptPerYearData" @ref="_bankruptPerYearChart"/>
+                    }
                 }
             </div>
         </div>
         <div class="card">
             <div class="card-header">Average debt</div>
             <div class="card-body">
-                @if (_years == null || debtData == null)
+                @if (_years == null || _debtData == null)
                 {
                     <p>Loading data..</p>
                 }
                 else
                 {
-                    <PlotlyChart Config="debtConfig" Layout="debtLayout" Data="debtData" @ref="debtChart"/>
+                    <PlotlyChart Config="_debtConfig" Layout="_debtLayout" Data="_debtData" @ref="_debtChart"/>
                 }
-            </div>
-        </div>
-
-        <hr />
-        <hr />
-        <div class="row">
-            <div class="col-xs-12">
-                <footer>
-                    <p>&copy; Available under MIT License.</p>
-                </footer>
             </div>
         </div>
     </div>

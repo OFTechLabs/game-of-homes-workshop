@@ -97,7 +97,7 @@ namespace Blazor_Dashboard.Pages
                 var averageSustainabilityScore = _results["SustainabilityScores"];
                 _years = Enumerable.Range(0, horizon).Select(t => DateTime.Today.Year + t).Cast<object>().ToList();
             
-                LoadScoresData(averageScore, averageNumberOfHousesScore, averageRentScore, averageSustainabilityScore);
+                LoadAverageScoresData(averageScore, averageNumberOfHousesScore, averageRentScore, averageSustainabilityScore);
                 LoadAverageResultsData(horizon, numberOfScenarios);
                 LoadBankruptcyData(horizon);
                 LoadDebtData(horizon);
@@ -110,15 +110,15 @@ namespace Blazor_Dashboard.Pages
             }
         }
 
-        private void LoadScoresData(List<object> averageScore, List<object> averageNumberOfHousesScore, List<object> averageRentScore,
+        private void LoadAverageScoresData(List<object> averageScore, List<object> averageNumberOfHousesScore, List<object> averageRentScore,
             List<object> averageSustainabilityScore)
         {
             _scoresData = new List<ITrace>();
 
-            AddScatterTrace(_scoresData, averageScore, "Average total score");
-            AddScatterTrace(_scoresData, averageNumberOfHousesScore, "Average number of houses score");
-            AddScatterTrace(_scoresData, averageRentScore, "Average rent score");
-            AddScatterTrace(_scoresData, averageSustainabilityScore, "Average sustainability score");
+            AddScatterTrace(_scoresData, averageScore, "Total score");
+            AddScatterTrace(_scoresData, averageNumberOfHousesScore, "Number of houses score");
+            AddScatterTrace(_scoresData, averageRentScore, "Rent score");
+            AddScatterTrace(_scoresData, averageSustainabilityScore, "Sustainability score");
         }
 
         private void LoadAverageResultsData(int horizon, int numberOfScenarios)

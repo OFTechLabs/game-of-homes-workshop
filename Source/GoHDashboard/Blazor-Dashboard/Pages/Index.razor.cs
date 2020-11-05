@@ -33,7 +33,11 @@ namespace Blazor_Dashboard.Pages
         {
             Responsive = true
         };
-        Layout _averageCapitalLayout = new Layout();
+        Layout _averageCapitalLayout = CreateLayout(
+            @"The average maintenance costs of all owned houses and scenarios,
+        more costs worsen the financial situation of the association.
+        And it shows the average rent of all owned houses and scenarios.
+        A higher rent improves the financial situation of the association.");
         IList<ITrace> _averageCapitalData;
 
         PlotlyChart _averageNumbersChart;
@@ -41,7 +45,7 @@ namespace Blazor_Dashboard.Pages
         {
             Responsive = true
         };
-        Layout _averageNumbersLayout = new Layout();
+        Layout _averageNumbersLayout = CreateLayout("The average number of (bad) houses of 100 scenarios.");
         IList<ITrace> _averageNumbersData;
 
         PlotlyChart _averageSustainabilityChart;
@@ -49,7 +53,7 @@ namespace Blazor_Dashboard.Pages
         {
             Responsive = true
         };
-        Layout _averageSustainabilityLayout = new Layout();
+        Layout _averageSustainabilityLayout = CreateLayout("The average sustainability of 100 scenarios.");
         IList<ITrace> _averageSustainabilityData;
 
         PlotlyChart _averageSolvencyChart;
@@ -57,7 +61,7 @@ namespace Blazor_Dashboard.Pages
         {
             Responsive = true
         };
-        Layout _averageSolvencyLayout = new Layout();
+        Layout _averageSolvencyLayout = CreateLayout("The average solvency ratio of 100 scenarios. The association is bankrupt as soon as the solvency drops below 20% (regardless of future developments)");
         IList<ITrace> _averageSolvencyData;
 
         PlotlyChart _bankruptPerYearChart;
@@ -98,6 +102,23 @@ namespace Blazor_Dashboard.Pages
 
         [Inject]
         private HttpClient HttpClient { get; set; }
+
+        private static Layout CreateLayout(string caption)
+        {
+            return new Layout
+            {
+                XAxis = new List<XAxis>
+                {
+                    new XAxis
+                    {
+                        Title = new Plotly.Blazor.LayoutLib.XAxisLib.Title
+                        {
+                                Text = caption
+                        } 
+                    } 
+                }
+            };
+        }
 
         protected override async Task OnInitializedAsync()
         {

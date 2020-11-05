@@ -146,5 +146,6 @@ During the assignments you have to refresh this page regularly to see how the mo
 ## Running the game of homes simulation
 
 Just press F5 or go to menu `Run --> Start debugging`. If required, choose the game of homes calculator. This starts a simulation and some output is printed to the terminal. If finished, head over to the browser and refresh. The new results will be shown.
+Sometimes the results do not change, in that case you have to clear the cache of the browser. How to do this depends on the browser that you are using which can be easily found by looking on the internet.
 
 

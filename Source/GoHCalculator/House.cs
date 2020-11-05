@@ -95,7 +95,7 @@ namespace GoHCalculator
 		/// </summary>
 		public double EndOfYear()
 		{
-			CurrentTenantLeaves = _currentTenantLeavesGenerator.NextDouble() >= MutationProbability;
+			CurrentTenantLeaves = _currentTenantLeavesGenerator.NextDouble() <= MutationProbability;
 
 			var amount = 0.0;
 			amount += MonthlyMaintenanceExpenses * 12;

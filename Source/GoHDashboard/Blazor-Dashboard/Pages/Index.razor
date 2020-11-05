@@ -52,16 +52,58 @@
             </div>
         </div>
         <div class="card">
-            <div class="card-header">Average Results</div>
+            <div class="card-header">Average Rent & Maintenance Costs</div>
             <div class="card-body">
 
-                @if (_years == null || _averageResultsData == null)
+                @if (_years == null || _averageCapitalData == null)
                 {
                     <p>Loading data..</p>
                 }
                 else
                 {
-                    <PlotlyChart style="height: 60vh; min-height: 350px" @bind-Config="_averageResultsConfig" @bind-Layout="_averageResultsLayout" @bind-Data="_averageResultsData" @ref="_averageResultsChart" />
+                    <PlotlyChart style="height: 60vh; min-height: 350px" @bind-Config="_averageCapitalConfig" @bind-Layout="_averageCapitalLayout" @bind-Data="_averageCapitalData" @ref="_averageCapitalChart" />
+                }
+            </div>
+        </div>
+    </div>
+    <p />
+    <div class="card-deck">
+        <div class="card">
+            <div class="card-header">Average Sustainability</div>
+            <div class="card-body">
+                @if (_years == null || _averageSustainabilityData == null)
+                {
+                    <p>Loading data..</p>
+                }
+                else
+                {
+                    <PlotlyChart Config="_averageSustainabilityConfig" Layout="_averageSustainabilityLayout" Data="_averageSustainabilityData" @ref="_averageSustainabilityChart"/>
+                }
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">Average Number of (Bad) Houses</div>
+            <div class="card-body">
+                @if (_years == null || _averageNumbersData == null)
+                {
+                    <p>Loading data..</p>
+                }
+                else
+                {
+                    <PlotlyChart Config="_averageNumbersConfig" Layout="_averageNumbersLayout" Data="_averageNumbersData" @ref="_averageNumbersChart"/>
+                }
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">Average Solvency Ratio</div>
+            <div class="card-body">
+                @if (_years == null || _averageSolvencyData == null)
+                {
+                    <p>Loading data..</p>
+                }
+                else
+                {
+                    <PlotlyChart Config="_averageSolvencyConfig" Layout="_averageSolvencyLayout" Data="_averageSolvencyData" @ref="_averageSolvencyChart"/>
                 }
             </div>
         </div>
@@ -94,6 +136,10 @@
                     {
                         <PlotlyChart Config="_bankruptPerYearConfig" Layout="_bankruptPerYearLayout" Data="_bankruptPerYearData" @ref="_bankruptPerYearChart"/>
                     }
+                    else
+                    {
+                        <p>No bankruptcies.</p>
+                    }   
                 }
             </div>
         </div>

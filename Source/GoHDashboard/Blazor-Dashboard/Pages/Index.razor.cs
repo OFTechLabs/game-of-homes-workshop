@@ -28,13 +28,37 @@ namespace Blazor_Dashboard.Pages
         // Using of the interface IList is important for the event callback!
         IList<ITrace> _scoresData;
 
-        PlotlyChart _averageResultsChart;
-        Config _averageResultsConfig = new Config()
+        PlotlyChart _averageCapitalChart;
+        Config _averageCapitalConfig = new Config()
         {
             Responsive = true
         };
-        Layout _averageResultsLayout = new Layout();
-        IList<ITrace> _averageResultsData;
+        Layout _averageCapitalLayout = new Layout();
+        IList<ITrace> _averageCapitalData;
+
+        PlotlyChart _averageNumbersChart;
+        Config _averageNumbersConfig = new Config()
+        {
+            Responsive = true
+        };
+        Layout _averageNumbersLayout = new Layout();
+        IList<ITrace> _averageNumbersData;
+
+        PlotlyChart _averageSustainabilityChart;
+        Config _averageSustainabilityConfig = new Config()
+        {
+            Responsive = true
+        };
+        Layout _averageSustainabilityLayout = new Layout();
+        IList<ITrace> _averageSustainabilityData;
+
+        PlotlyChart _averageSolvencyChart;
+        Config _averageSolvencyConfig = new Config()
+        {
+            Responsive = true
+        };
+        Layout _averageSolvencyLayout = new Layout();
+        IList<ITrace> _averageSolvencyData;
 
         PlotlyChart _bankruptPerYearChart;
         Config _bankruptPerYearConfig = new Config()
@@ -98,7 +122,10 @@ namespace Blazor_Dashboard.Pages
                 _years = Enumerable.Range(0, horizon).Select(t => DateTime.Today.Year + t).Cast<object>().ToList();
             
                 LoadAverageScoresData(averageScore, averageNumberOfHousesScore, averageRentScore, averageSustainabilityScore);
-                LoadAverageResultsData(horizon, numberOfScenarios);
+                LoadAverageCapitalData(horizon);
+                LoadAverageNumbersData(horizon);
+                LoadAverageSolvencyRatioData(horizon);
+                LoadAverageSustainabilityRatioData(horizon);
                 LoadBankruptcyData(horizon);
                 LoadDebtData(horizon);
 
@@ -121,17 +148,31 @@ namespace Blazor_Dashboard.Pages
             AddScatterTrace(_scoresData, averageSustainabilityScore, "Sustainability score");
         }
 
-        private void LoadAverageResultsData(int horizon, int numberOfScenarios)
+        private void LoadAverageCapitalData(int horizon)
         {
-            _averageResultsData = new List<ITrace>();
-
-            AddScatterTrace(_averageResultsData, _results["SolvencyRatio"], "Solvency ratio");
-            AddScatterTrace(_averageResultsData, _results["Houses"], "Number of houses");
-            AddScatterTrace(_averageResultsData, _results["Rent"], "Rent");
-            AddScatterTrace(_averageResultsData, _results["Sustainability"], "Sustainability");
-            AddScatterTrace(_averageResultsData, _results["Maintenance"], "Maintenance costs");
-            AddScatterTrace(_averageResultsData, _results["NumberOfBadHouses"], "Number of bad houses");
+            _averageCapitalData = new List<ITrace>();
+            AddScatterTrace(_averageCapitalData, _results["Rent"], "Rent");
+            AddScatterTrace(_averageCapitalData, _results["Maintenance"], "Maintenance costs");
         }
+
+        private void LoadAverageNumbersData(int horizon)
+        {
+            _averageNumbersData = new List<ITrace>();
+            AddScatterTrace(_averageNumbersData, _results["Houses"], "Number of houses");
+            AddScatterTrace(_averageNumbersData, _results["NumberOfBadHouses"], "Number of bad houses");
+        }
+
+         private void LoadAverageSolvencyRatioData(int horizon)
+         {
+            _averageSolvencyData = new List<ITrace>();
+            AddScatterTrace(_averageSolvencyData, _results["SolvencyRatio"], "Solvency ratio");
+         }
+
+          private void LoadAverageSustainabilityRatioData(int horizon)
+          {
+              _averageSustainabilityData = new List<ITrace>();
+                AddScatterTrace(_averageSustainabilityData, _results["Sustainability"], "Sustainability");
+          }
 
         private void LoadBankruptcyData(int horizon)
         {

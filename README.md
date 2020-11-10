@@ -2,6 +2,47 @@
 
 In the *Game of Homes* you need to create and implement the best 30-year-policy for a housing association, which has a number of long-term goals. The sustainability of your policy depends on how successful you are in fulfilling these goals.
 
+# Getting started
+
+## Requirements
+
+Windows 10, Version 1809 or newer.
+MacOS 10.13 "High Sierra" or newer.
+Various Linux distributions.
+
+## Installation
+
+Download and install [.NET Core SDK 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1) for either Windows, MacOS or Linux. `Make sure that you pick the correct version` like x64 otherwise it will not run. It is unlikely that you need x86 since all CPU's nowadays are 64 bit (=`x64`).
+For more details which OS is supported and how to install see https://docs.microsoft.com/en-us/dotnet/core/install/.
+Download and install [Visual Studio Code](https://code.visualstudio.com/download) for either Windows, MacOS or Linux.
+
+## Running the dashboard
+
+Start Visual Studio Code, go to menu `View --> Extensions` and search for C#. Choose `C# for Visual Studio Code (Microsoft)`.
+
+Navigate to https://github.com/OFTechLabs/game-of-homes-workshop where you can find all documentation. Download and extract the source files that are zipped to a local folder.
+
+In visual studio code, go to menu `File --> Open Folder`. Navigate to the `Source` folder that you have just extracted from the zip file. This last step is important otherwise paths are wrong and you cannot run the program.
+If visual studio asks for “installing missing assets” then choose Yes.
+
+In the bottom there is window with a tab `Terminal`. If not, go to menu `Terminal --> New Terminal`.
+Run the following statement 
+
+`dotnet watch -p .\GoHDashboard\Blazor-Dashboard run`
+
+Start a browser a go to page `http://localhost:5000`. This opens the dashboard that shows the results. During the first run this will only show 'loading'.
+
+During the assignments you have to refresh this page regularly to see how the modifications pan out.
+
+If things do not work it can be that you need to either `restart Visual Studio Code`, or even `reboot your machine`. The above dotnet command restores everything, compiles the dashboard project and starts a listener automatically. If it does not restore, run
+
+`dotnet restore`
+
+## Running the game of homes simulation
+
+Just press F5 or go to menu `Run --> Start debugging`. If required, choose the game of homes calculator. This starts a simulation and some output is printed to the terminal. If finished, head over to the browser and refresh. The new results will be shown.
+Sometimes the results do not change, in that case you have to clear the cache of the browser. How to do this depends on the browser that you are using which can be easily found by looking on the internet.
+
 ## Goals
 
 The following goals are minimum requirements. Failing to meet them has severe consequences for the housing association. In order of importance:
@@ -111,41 +152,5 @@ The following projects are available:
 *All prices/values are per house and will be increased with inflation each year*
 
 You can choose them in function `DetermineRenovationsToExecute`.
-
-# Getting started
-
-## Requirements
-
-Windows 10, Version 1809 or newer.
-MacOS 10.13 "High Sierra" or newer.
-Various Linux distributions.
-
-## Installation
-
-Download and install [.NET Core SDK 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1) for either Windows, MacOS or Linux. For more details which OS is supported and how to install see https://docs.microsoft.com/en-us/dotnet/core/install/.
-Download and install [Visual Studio Code](https://code.visualstudio.com/download) for either Windows, MacOS or Linux.
-
-## Running the dashboard
-
-Start Visual Studio Code, go to menu `View --> Extensions` and search for C#. Choose `C# for Visual Studio Code (Microsoft)`.
-
-Navigate to https://github.com/OFTechLabs/game-of-homes-workshop where you can find all documentation. Download and extract the source files that are zipped to a local folder.
-
-In visual studio code, go to menu `File --> Open Folder`. Navigate to the `Source` folder that you have just extracted from the zip file. This last step is important otherwise paths are wrong and you cannot run the program.
-If visual studio asks for “installing missing assets” then choose Yes.
-
-In the bottom there is window with a tab `Terminal`. If not, go to menu `Terminal --> New Terminal`.
-Run the following statement 
-
-`dotnet watch -p .\GoHDashboard\Blazor-Dashboard run`
-
-Start a browser a go to page `http://localhost:5000`. This opens the dashboard that shows the results. During the first run this will only show 'loading'.
-
-During the assignments you have to refresh this page regularly to see how the modifications pan out.
-
-## Running the game of homes simulation
-
-Just press F5 or go to menu `Run --> Start debugging`. If required, choose the game of homes calculator. This starts a simulation and some output is printed to the terminal. If finished, head over to the browser and refresh. The new results will be shown.
-Sometimes the results do not change, in that case you have to clear the cache of the browser. How to do this depends on the browser that you are using which can be easily found by looking on the internet.
 
 

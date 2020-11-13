@@ -32,7 +32,7 @@ Windows: `dotnet watch -p .\GoHDashboard\Blazor-Dashboard run`
 
 Linux / maxOS: `dotnet watch -p ./GoHDashboard\Blazor-Dashboard run`
 
-Start a browser a go to page `http://localhost:5000`. This opens the dashboard that shows the results. During the first run this will only show 'loading'.
+Start a browser and go to page `http://localhost:5000`. This opens the dashboard that shows the results. During the first run this will only show 'loading'. It is a good idea to open the page in incognito / private mode, because sometime the page is cached and new results do appear only after clearing your browsers cache.
 
 During the assignments you have to refresh this page regularly to see how the modifications pan out.
 

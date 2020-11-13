@@ -26,9 +26,10 @@ In visual studio code, go to menu `File --> Open Folder`. Navigate to the `Sourc
 If visual studio asks for “installing missing assets” then choose Yes.
 
 In the bottom there is window with a tab `Terminal`. If not, go to menu `Terminal --> New Terminal`.
-Run the following statement 
+Run the following statement:
 
-`dotnet watch -p .\GoHDashboard\Blazor-Dashboard run`
+Windows: `dotnet watch -p .\GoHDashboard\Blazor-Dashboard run`
+Linux / maxOS: `dotnet watch -p ./GoHDashboard\Blazor-Dashboard run`
 
 Start a browser a go to page `http://localhost:5000`. This opens the dashboard that shows the results. During the first run this will only show 'loading'.
 

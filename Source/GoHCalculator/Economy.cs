@@ -12,7 +12,7 @@ namespace GoHCalculator
 
 		public static void Read(int scenario)
 		{
-			var fileName = $@"..\..\Scenarios\Scenario{scenario}.csv";
+			var fileName = Path.Combine("..","..","Scenarios",$"Scenario{scenario}.csv");
             var lines = File.ReadAllLines(fileName);
 			var result = lines.Select(l => l.Split(';').Select(s => double.Parse(s, CultureInfo.InvariantCulture.NumberFormat)).ToList());
 			_series = result.ToList();

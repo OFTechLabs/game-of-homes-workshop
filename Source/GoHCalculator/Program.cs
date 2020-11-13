@@ -1,16 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Runtime.InteropServices;
 using System.Text.Json;
 
 namespace GoHCalculator
 {
-	public static class Program
+    public static class Program
 	{
 		public static void Main()
 		{
@@ -29,9 +25,9 @@ namespace GoHCalculator
 				return values;
 			});
 
-			Console.WriteLine(@"Creating output json file......");
+			Console.WriteLine("Creating output json file......");
 			var jsonString = JsonSerializer.Serialize(output);
-			File.WriteAllText(@"..\..\bin\debug\wwwroot\results.json", jsonString);
+			File.WriteAllText(Path.Combine("..","..","bin","debug","wwwroot","results.json"), jsonString);
 		}
 	}
 }

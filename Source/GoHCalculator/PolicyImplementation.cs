@@ -22,7 +22,7 @@
 		///     house.MarketValue                                       The current market value of the house
 		///     house.MonthlyMaintenanceExpenses                        The current monthly maintenance costs for the house
 		///     house.Sustainability                                    The current sustainability rating of the house, a number between 0 and 80 where 70 is considered as good.
-		///     house.Lifespan                                          The remaining lifespan of the house, in years. If negative, maintenance costs will increase more.
+		///     house.LifeSpan                                          The remaining lifespan of the house, in years. If negative, maintenance costs will increase more.
 		/// 
 		///     house.HousingAssociation.AverageRent                    The average rent of all houses
         ///     house.HousingAssociation.AverageSustainabilityOfHouses  The average sustainability of all houses

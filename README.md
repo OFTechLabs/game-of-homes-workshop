@@ -12,15 +12,15 @@ Various Linux distributions.
 
 ## Installation
 
-Download and install [.NET Core SDK 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1) for either Windows, MacOS or Linux. `Make sure that you pick the correct version` like x64 otherwise it will not run. It is unlikely that you need x86 since all CPU's nowadays are 64 bit (=`x64`).
+Download and install [.NET Core SDK 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1){:target="_blank"} for either Windows, MacOS or Linux. `Make sure that you pick the correct version` like x64 otherwise it will not run. It is unlikely that you need x86 since all CPU's nowadays are 64 bit (=`x64`).
 For more details which OS is supported and how to install see https://docs.microsoft.com/en-us/dotnet/core/install/.
-Download and install [Visual Studio Code](https://code.visualstudio.com/download) for either Windows, MacOS or Linux.
+Download and install [Visual Studio Code](https://code.visualstudio.com/download){:target="_blank"} for either Windows, MacOS or Linux.
 
 ## Running the dashboard
 
 Start Visual Studio Code, go to menu `View --> Extensions` and search for C#. Choose `C# for Visual Studio Code (Microsoft)`.
 
-Navigate to https://github.com/OFTechLabs/game-of-homes-workshop where you can find all documentation. Download and extract the source files that are zipped to a local folder.
+Download and extract the source files that are zipped to a local folder.
 
 In visual studio code, go to menu `File --> Open Folder`. Navigate to the `Source` folder that you have just extracted from the zip file. This last step is important otherwise paths are wrong and you cannot run the program.
 If visual studio asks for “installing missing assets” then choose Yes.
@@ -30,7 +30,7 @@ Run the following statement
 
 `dotnet watch -p .\GoHDashboard\Blazor-Dashboard run`
 
-Start a browser a go to page `http://localhost:5000`. This opens the dashboard that shows the results. During the first run this will only show 'loading'.
+Start a browser a go to page [http://localhost:5000](http://localhost:5000){:target="_blank"}.This opens the dashboard that shows the results. During the first run this will only show 'loading'.
 
 During the assignments you have to refresh this page regularly to see how the modifications pan out.
 

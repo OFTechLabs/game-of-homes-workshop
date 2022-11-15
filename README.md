@@ -28,9 +28,9 @@ If visual studio asks for “installing missing assets” then choose Yes.
 In the bottom there is window with a tab `Terminal`. If not, go to menu `Terminal --> New Terminal`.
 Run the following statement:
 
-Windows: `dotnet watch -p .\GoHDashboard\Blazor-Dashboard run`
+Windows: `dotnet watch --project .\GoHDashboard\Blazor-Dashboard run`
 
-Linux / maxOS: `dotnet watch -p ./GoHDashboard/Blazor-Dashboard run`
+Linux / maxOS: `dotnet watch --project ./GoHDashboard/Blazor-Dashboard run`
 
 Start a browser and go to page `http://localhost:5000`. This opens the dashboard that shows the results. During the first run this will only show 'loading'. It is a good idea to open the page in incognito / private mode, because sometime the page is cached and new results do appear only after clearing your browsers cache.
 

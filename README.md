@@ -12,7 +12,7 @@ Various Linux distributions.
 
 ## Installation
 
-Download and install [.NET Core SDK 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1) for either Windows, MacOS or Linux. `Make sure that you pick the correct version` like x64 otherwise it will not run. It is unlikely that you need x86 since all CPU's nowadays are 64 bit (=`x64`).
+Download and install [.NET 5.0 SDK](https://dotnet.microsoft.com/download/dotnet/5.0) for either Windows, MacOS or Linux. `Make sure that you pick the correct version` like x64 otherwise it will not run. It is unlikely that you need x86 since all CPU's nowadays are 64 bit (=`x64`).
 For more details which OS is supported and how to install see https://docs.microsoft.com/en-us/dotnet/core/install/.
 Download and install [Visual Studio Code](https://code.visualstudio.com/download) for either Windows, MacOS or Linux.
 
@@ -28,9 +28,9 @@ If visual studio asks for “installing missing assets” then choose Yes.
 In the bottom there is window with a tab `Terminal`. If not, go to menu `Terminal --> New Terminal`.
 Run the following statement:
 
-Windows: `dotnet watch -p .\GoHDashboard\Blazor-Dashboard run`
+Windows: `dotnet watch --project .\GoHDashboard\Blazor-Dashboard run`
 
-Linux / maxOS: `dotnet watch -p ./GoHDashboard/Blazor-Dashboard run`
+Linux / maxOS: `dotnet watch --project ./GoHDashboard/Blazor-Dashboard run`
 
 Start a browser and go to page `http://localhost:5000`. This opens the dashboard that shows the results. During the first run this will only show 'loading'. It is a good idea to open the page in incognito / private mode, because sometime the page is cached and new results do appear only after clearing your browsers cache.
 

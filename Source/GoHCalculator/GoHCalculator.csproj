@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>GameOfHomes</AssemblyName>
     <OutputPath>..\..\Bin\$(Configuration)</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>

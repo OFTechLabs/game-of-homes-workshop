@@ -12,7 +12,7 @@ Various Linux distributions.
 
 ## Installation
 
-Download and install [.NET 5.0 SDK](https://dotnet.microsoft.com/download/dotnet/5.0) for either Windows, MacOS or Linux. `Make sure that you pick the correct version` like x64 otherwise it will not run. It is unlikely that you need x86 since all CPU's nowadays are 64 bit (=`x64`).
+Download and install [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0) for either Windows, MacOS or Linux. `Make sure that you pick the correct version` like x64 otherwise it will not run. It is unlikely that you need x86 since all CPU's nowadays are 64 bit (=`x64`).
 For more details which OS is supported and how to install see https://docs.microsoft.com/en-us/dotnet/core/install/.
 Download and install [Visual Studio Code](https://code.visualstudio.com/download) for either Windows, MacOS or Linux.
 

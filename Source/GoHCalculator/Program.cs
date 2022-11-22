@@ -27,7 +27,7 @@ namespace GoHCalculator
 
 			Console.WriteLine("Creating output json file......");
 			var jsonString = JsonSerializer.Serialize(output);
-			File.WriteAllText(Path.Combine("..","..","bin","debug","wwwroot","results.json"), jsonString);
+			File.WriteAllText(Path.Combine("..","GoHDashboard","Blazor-Dashboard","wwwroot","results.json"), jsonString);
 		}
 	}
 }

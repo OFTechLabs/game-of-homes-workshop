@@ -120,7 +120,7 @@ namespace Blazor_Dashboard.Pages
         {
             try
             {
-                var jsonString = await HttpClient.GetStringAsync("results.json");
+                var jsonString = await HttpClient.GetStringAsync("./results.json");
                 _results = JsonSerializer.Deserialize<Dictionary<string, List<double>>>(jsonString).ToDictionary(p => p.Key, p => p.Value.Cast<object>().ToList());
                 var horizon = _results.Values.First().Count;
                 

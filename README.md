@@ -29,6 +29,7 @@ Run the following statement:
 
 
 Windows: `dotnet watch --project .\GoHDashboard\Blazor-Dashboard run`
+
 Linux or macOS:`dotnet watch --project ./GoHDashboard/Blazor-Dashboard run`
 
 

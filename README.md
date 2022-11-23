@@ -6,9 +6,9 @@ In the *Game of Homes* you need to create and implement the best 30-year-policy 
 
 ## Requirements
 
-Windows 10, Version 1809 or newer.
-MacOS 10.13 "High Sierra" or newer.
-Various Linux distributions.
+* Windows 10, Version 1607 or newer (see [Supported Windows Releases](https://learn.microsoft.com/en-us/dotnet/core/install/windows#supported-releases)).
+* MacOS 10.13 "High Sierra" or newer (see [Supported macOS Releases](https://learn.microsoft.com/en-us/dotnet/core/install/macos#supported-releases)).
+* Various Linux distributions (see [Install .NET on Linux](https://learn.microsoft.com/en-us/dotnet/core/install/linux)).
 
 ## Installation
 

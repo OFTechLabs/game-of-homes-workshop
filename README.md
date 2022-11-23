@@ -28,9 +28,8 @@ In the bottom there is window with a tab `Terminal`. If not, go to menu `Termina
 Run the following statement:
 
 
-`Windows: dotnet watch --project .\GoHDashboard\Blazor-Dashboard run`
- ``
-`Linux or macOS:`dotnet watch --project ./GoHDashboard/Blazor-Dashboard run`
+Windows: `dotnet watch --project .\GoHDashboard\Blazor-Dashboard run`
+Linux or macOS:`dotnet watch --project ./GoHDashboard/Blazor-Dashboard run`
 
 
 A browser window pops up with page [https://localhost:5001](https://localhost:5001), if not please navigate to this address yourself. The page shows the dashboard that presents the results. It is a good idea to open the page in incognito / private mode, because sometime the page is cached and new results do appear only after clearing your browsers cache.

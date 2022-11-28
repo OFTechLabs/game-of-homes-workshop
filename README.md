@@ -6,13 +6,13 @@ In the *Game of Homes* you need to create and implement the best 30-year-policy 
 
 ## Requirements
 
-Windows 10, Version 1809 or newer.
-MacOS 10.13 "High Sierra" or newer.
-Various Linux distributions.
+* Windows 10, Version 1607 or newer (see [Supported Windows Releases](https://learn.microsoft.com/en-us/dotnet/core/install/windows#supported-releases)).
+* MacOS 10.15 "Catalina" or newer (see [Supported macOS Releases](https://learn.microsoft.com/en-us/dotnet/core/install/macos#supported-releases)).
+* Various Linux distributions (see [Install .NET on Linux](https://learn.microsoft.com/en-us/dotnet/core/install/linux)).
 
 ## Installation
 
-Download and install [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0) for either Windows, MacOS or Linux. `Make sure that you pick the correct version` like x64 otherwise it will not run. It is unlikely that you need x86 since all CPU's nowadays are 64 bit (=`x64`).
+Download and install [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0) for either Windows, MacOS or Linux. `Make sure that you pick the correct version`like x64 otherwise it will not run. It is unlikely that you need x86 since all CPU's nowadays are 64 bit (=`x64`).
 For more details which OS is supported and how to install see https://docs.microsoft.com/en-us/dotnet/core/install/.
 Download and install [Visual Studio Code](https://code.visualstudio.com/download) for either Windows, MacOS or Linux.
 
@@ -20,30 +20,31 @@ Download and install [Visual Studio Code](https://code.visualstudio.com/download
 
 Start Visual Studio Code, go to menu `View --> Extensions` and search for C#. Choose `C# for Visual Studio Code (Microsoft)`.
 
-Navigate to https://github.com/OFTechLabs/game-of-homes-workshop where you can find all documentation. Download and extract the source files that are zipped to a local folder.
+Download the source files. They are packed in a zip archive, extract the files to a local folder.
 
-In visual studio code, go to menu `File --> Open Folder`. Navigate to the `Source` folder that you have just extracted from the zip file. This last step is important otherwise paths are wrong and you cannot run the program.
-If visual studio asks for “installing missing assets” then choose Yes.
+In visual studio code, go to menu `File --> Open Folder`. Navigate to the `Source`folder that you have just extracted from the zip file. This last step is important otherwise paths are wrong and you cannot run the program. If visual studio asks for  installing  missing  assets  then choose Yes.
 
 In the bottom there is window with a tab `Terminal`. If not, go to menu `Terminal --> New Terminal`.
 Run the following statement:
 
+
 Windows: `dotnet watch --project .\GoHDashboard\Blazor-Dashboard run`
 
-Linux / maxOS: `dotnet watch --project ./GoHDashboard/Blazor-Dashboard run`
+Linux or macOS: `dotnet watch --project ./GoHDashboard/Blazor-Dashboard run`
 
-Start a browser and go to page `http://localhost:5000`. This opens the dashboard that shows the results. During the first run this will only show 'loading'. It is a good idea to open the page in incognito / private mode, because sometime the page is cached and new results do appear only after clearing your browsers cache.
 
-During the assignments you have to refresh this page regularly to see how the modifications pan out.
+A browser window pops up with page [https://localhost:5001](https://localhost:5001), if not please navigate to this address yourself. The page shows the dashboard that presents the results. It is a good idea to open the page in incognito / private mode, because sometime the page is cached and new results do appear only after clearing your browsers cache.
 
-If things do not work it can be that you need to either `restart Visual Studio Code`, or even `reboot your machine`. The above dotnet command restores everything, compiles the dashboard project and starts a listener automatically. If it does not restore, run
+The page refreshes itself during the assignment so that you see how the modifications pan out.
+
+If something is not working it can be that you need to either `restart Visual Studio Code`, or even `reboot your machine`. The above  dotnet  command restores everything, compiles the dashboard project and starts a listener automatically. If it does not restore, run
 
 `dotnet restore`
 
 ## Running the game of homes simulation
 
-Just press F5 or go to menu `Run --> Start debugging`. If required, choose the game of homes calculator. This starts a simulation and some output is printed to the terminal. If finished, head over to the browser and refresh. The new results will be shown.
-Sometimes the results do not change, in that case you have to clear the cache of the browser. How to do this depends on the browser that you are using which can be easily found by looking on the internet.
+Just press F5 or go to menu `Run --> Start debugging`. If required, choose the game of homes calculator. This starts a simulation and some output is printed to the terminal. If finished, head over to the browser. The new results will be shown. If not, please refresh the page.
+Sometimes the results do not change, in that case you have to clear the cache of the browser. How to do this depends on the browser that you are using which can be easily found by looking on the internet. Of just open the page in incognito mode.
 
 ## Goals
 
